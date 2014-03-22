@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <title>FBログインJS Version</title>
+    <script>
+      $(document).ready(function() {
+      $.ajaxSetup({ cache: true });
+      $.getScript('//connect.facebook.net/en_UK/all.js', function(){
+      FB.init({
+      appId: '1463250347225256',
+      });     
+      $('#loginbutton,#feedbutton').removeAttr('disabled');
+      FB.getLoginStatus(updateStatusCallback);
+      });
+      });
+    </script>
+  </head>
+  <body>
+    FacebookにJSでログイン
+    <div id="fb-root"></div>
+    <fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="true"></div>
+  </body>
+</html>
+

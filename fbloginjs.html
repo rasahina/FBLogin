@@ -1,0 +1,42 @@
+<html>
+  <head>
+  </head>
+  <body>
+    FacebookにJSでログイン
+    <div id="fb-root"></div>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId : '1463250347225256',
+          status : true,
+          xfbml : true
+        });
+        FB.Event.subscribe('auth.authResponseChange', function(response) {
+          if (response.status === 'connected') {
+            testAPI();
+          } else if (response.status === 'not_authorized') {
+            FB.login();
+          } else {
+            FB.login();
+          }
+        });
+      };
+      (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js";
+        fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+      function testAPI() {
+      console.log('Welcome!  Fetching your information.... ');
+      FB.api('/me', function(response) {
+      console.log('Good to see you, ' + response.name + '.');
+      });
+      }
+    </script>
+    <div><fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button></div>
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="true"></div>
+  </body>
+</html>
+
